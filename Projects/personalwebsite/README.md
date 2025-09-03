@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Website (Next.js + Tailwind CSS)
 
-## Getting Started
+A simple portfolio site built with Next.js 15, React 19, and Tailwind CSS 4. Uses the App Router (`/app`) and a small set of reusable UI components.
 
-First, run the development server:
+## Tech Stack
+- Next.js 15 (App Router)
+- React 19
+- Tailwind CSS 4
+- Vercel Analytics (optional)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Project Structure
+```
+app/
+  layout.tsx        # Root layout, fonts, analytics
+  page.tsx          # Home/portfolio page
+  globals.css       # Global Tailwind + theme tokens
+components/
+  theme-provider.tsx
+  ui/               # Reusable UI components (buttons, cards, dialogs, etc.)
+hooks/
+  use-mobile.ts
+  use-toast.ts
+lib/
+  utils.ts
+public/
+  *.png/*.jpg/*.svg # Public assets used on the homepage
+styles/
+  globals.css       # Tailwind global styles (imported by app/globals.css)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting Started (Local Development)
+1. Install dependencies:
+```bash
+npm install
+```
+2. Start the dev server:
+```bash
+npm run dev
+```
+3. Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Main page to edit: `app/page.tsx`
+- Global styles: `app/globals.css` (imports from `styles/globals.css`)
+- UI components: `components/ui/*`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Building for Production
+```bash
+npm run build
+npm start
+```
+This builds the app and starts a production server on `http://localhost:3000`.
 
-## Learn More
+## Deploying to Vercel
+1. Push this repository to GitHub.
+2. In Vercel, create a New Project and import this repo.
+3. Framework Preset: Next.js (defaults are fine).
+4. Click Deploy.
 
-To learn more about Next.js, take a look at the following resources:
+After deployment, Vercel will provide your live URL. Subsequent pushes to `main` trigger automatic redeploys.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- If you want to add 3D later (React Three Fiber), you can introduce a dynamically imported Canvas inside `app/page.tsx` to avoid SSR issues.
+- Update images in `public/` or link to external assets.
+- Tailwind tokens (colors, radius, etc.) are defined via CSS variables in `app/globals.css`.
